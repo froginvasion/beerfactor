@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beerfactor</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Beerfactor</a>
+      <ul class="nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><%= link_to "Browse beers", beers_path %></li>
+      </ul>
+
+      <ul>
+        <form class="navbar-form pull-right">
+          <input name="username" type="text" placeholder="username" class="span2">
+          <input name="password" type="password" placeholder="password" class="span2">
+          <button type="submit" class="btn">Log in</button>
+        </form>
+      </ul>
+    </div>
+
+
+  </div>
+  <%= yield %>
+</div>
+
+</body>
+</html>

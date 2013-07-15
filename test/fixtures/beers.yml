@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  alcoholpercentage: 9.99
+  kind: 1
+
+two:
+  name: MyString
+  description: MyText
+  alcoholpercentage: 9.99
+  kind: 1
