@@ -3,7 +3,6 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
     @beers = Beer.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beers }

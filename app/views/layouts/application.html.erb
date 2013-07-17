@@ -14,14 +14,22 @@
       <ul class="nav">
         <li class="active"><a href="#">Home</a></li>
         <li><%= link_to "Browse beers", beers_path %></li>
+        <li><%= link_to "Register", new_user_path %></li>
       </ul>
-
       <ul>
-        <form class="navbar-form pull-right">
-          <input name="username" type="text" placeholder="username" class="span2">
-          <input name="password" type="password" placeholder="password" class="span2">
-          <button type="submit" class="btn">Log in</button>
-        </form>
+        <% unless logged_in? %>
+            <%= form_tag sessions_path,class: 'navbar-form pull-right' do %>
+                <%= text_field_tag :email, nil, {placeholder: 'email', class: 'span2'} %>
+                <%= password_field_tag :password, nil, {placeholder: 'password', class: 'span2'} %>
+                <%= submit_tag 'log in', class: 'btn' %>
+            <% end %>
+        <% else %>
+        <li class='pull-right'>
+          Welcome, <%= current_user.email %>
+          <%= link_to 'log out',sessions_path, :method => :delete%>
+        </li>
+
+        <% end %>
       </ul>
     </div>
 

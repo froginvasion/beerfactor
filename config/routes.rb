@@ -1,10 +1,15 @@
 Beerfactor::Application.routes.draw do
+  get "session/index"
+
   get "home/index"
 
   resources :beers
 
+  resources :users
 
   resources :products
+
+  resources :sessions
 
 
 
