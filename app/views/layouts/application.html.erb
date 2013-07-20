@@ -8,13 +8,15 @@
 </head>
 <body>
 <div class="container">
-  <div class="navbar">
+  <div class="navbar navbar-inverse">
     <div class="navbar-inner">
       <a class="brand" href="#">Beerfactor</a>
       <ul class="nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Browse beers", beers_path %></li>
-        <li><%= link_to "Register", new_user_path %></li>
+        <% unless logged_in? %>
+            <li><%= link_to "Register", new_user_path %></li>
+        <% end %>
       </ul>
       <ul>
         <% unless logged_in? %>
@@ -24,11 +26,10 @@
                 <%= submit_tag 'log in', class: 'btn' %>
             <% end %>
         <% else %>
-        <li class='pull-right'>
-          Welcome, <%= current_user.email %>
-          <%= link_to 'log out',sessions_path, :method => :delete%>
-        </li>
-
+        <div class='pull-right'>
+          <p class="navbar-text">Welcome, <i><%= current_user.email %></i>
+           <strong><%= link_to 'log out', logout_path %></strong></p>
+          </div>
         <% end %>
       </ul>
     </div>

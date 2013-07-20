@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+$(document).ready(function(){
+    $('.navbar ul a[href="' + this.location.pathname + '"]').parent().addClass('active');
+});

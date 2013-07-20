@@ -3,6 +3,8 @@ Beerfactor::Application.routes.draw do
 
   get "home/index"
 
+  get 'logout', to: 'sessions#destroy', as: :logout
+
   resources :beers
 
   resources :users
