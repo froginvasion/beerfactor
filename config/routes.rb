@@ -1,4 +1,6 @@
 Beerfactor::Application.routes.draw do
+  get "comments/index"
+
   get "session/index"
 
   get "home/index"
@@ -9,9 +11,10 @@ Beerfactor::Application.routes.draw do
 
   resources :users
 
-  resources :products
 
   resources :sessions
+
+  resources :comments
 
 
 
