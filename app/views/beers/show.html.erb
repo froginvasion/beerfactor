@@ -37,22 +37,15 @@
       <% end %>
   <% end %>
 
-  <% unless @comment.errors.empty? %>
-    <div class="field_with_errors">
-      <%= @comment.errors.each do |err| %>
-          <%= err.message %>
-      <% end %>
-    </div>
-  <% end %>
 
 
   <% unless logged_in? %>
       <strong>Please register to post comments <%= link_to 'here',new_user_path %> or log in.</strong>
   <% else %>
       <h2>Add a comment!</h2>
+      <em>You are posting as <%= current_user.email %></em>
       <%= form_for @comment do |f| %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :beer_id, :value => @beer.id %>
+          <%= f.hidden_field :beer_id,:value => @beer.id %>
           <div class="control-group">
             <%= f.label :body, {:class => 'control-label'} %>
             <%= f.text_area :body, {:class => 'text_area'} %>
