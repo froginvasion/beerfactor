@@ -10,6 +10,8 @@
   <dd><%= @beer.alcoholpercentage %></dd>
   <dt><strong><%= model_class.human_attribute_name(:kind_id) %>:</strong></dt>
   <dd><%= @beer.kind.name %></dd>
+  <dt><strong>Average rating:</strong></dt>
+  <dd><%= @beer.average_rating %></dd>
 </dl>
 
 <div class="form-actions">
@@ -25,12 +27,25 @@
 </div>
 <div>
 
+  <% if logged_in? %>
+      <h2>Rate this beer!</h2>
+      <%= form_for rating_ballot, :html => {:remote => true} do |f| %>
+          <%= f.hidden_field :beer_id,:value => @beer.id %>
+          <% 1.upto(10) do |e| %>
+              <%= f.label "score_#{e}", e.to_s,{:id => e} %>
+              <%= radio_button_tag "rating[score]",e.to_s,rating_compare.call(e) %>
+          <% end %>
+          <%= f.submit 'Rate' %>
+      <% end %>
+  <% end %>
+
 
 
   <% unless @beer.comments.empty? %>
       <h2>Comments</h2>
-      <% @beer.comments.each do |comment| %>
-        <strong><%= comment.user.email %></strong> posted on <i><%= comment.updated_at %></i>
+      <% @beer.comments.order("created_at DESC").each do |comment| %>
+        <i><%= time_ago_in_words comment.updated_at %> ago by</i>
+        <strong><%= comment.user.email %></strong>
           <br />
           <em><%= comment.body %></em>
           <hr>
@@ -40,9 +55,9 @@
 
 
   <% unless logged_in? %>
-      <strong>Please register to post comments <%= link_to 'here',new_user_path %> or log in.</strong>
+      <strong>Please register to post comments or rate <%= link_to 'here',new_user_path %> or log in.</strong>
   <% else %>
-      <h2>Add a comment!</h2>
+       <h2>Add a comment!</h2>
       <em>You are posting as <%= current_user.email %></em>
       <%= form_for @comment do |f| %>
           <%= f.hidden_field :beer_id,:value => @beer.id %>

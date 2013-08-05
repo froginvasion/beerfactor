@@ -1,4 +1,6 @@
 Beerfactor::Application.routes.draw do
+  get "ratings/index"
+
   get "comments/index"
 
   get "session/index"
@@ -10,7 +12,7 @@ Beerfactor::Application.routes.draw do
   resources :beers
 
   resources :users
-
+  resources :ratings
 
   resources :sessions
 

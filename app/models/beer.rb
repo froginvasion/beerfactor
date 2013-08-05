@@ -6,5 +6,16 @@ class Beer < ActiveRecord::Base
 
   belongs_to :kind
   has_many :comments
+  has_many :ratings
+  has_many :raters, :through => :ratings, :source => :users
+
+  def average_rating
+    @value = 0
+    self.ratings.each do |rating|
+      @value += rating.score
+    end
+    @total = self.ratings.size
+    @value.to_f / @total.to_f
+  end
 
 end
