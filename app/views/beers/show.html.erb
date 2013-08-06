@@ -29,15 +29,19 @@
 
   <% if logged_in? %>
       <h2>Rate this beer!</h2>
-      <%= form_for rating_ballot, :html => {:remote => true} do |f| %>
+      <% content_for :scripts do %>
+        <%= javascript_include_tag 'rating_ballot' %>
+      <% end %>
+      <%= form_for rating_ballot, :html => {:remote => true,:class => 'rating_ballot'} do |f| %>
           <%= f.hidden_field :beer_id,:value => @beer.id %>
           <% 1.upto(10) do |e| %>
-              <%= f.label "score_#{e}", e.to_s,{:id => e} %>
-              <%= radio_button_tag "rating[score]",e.to_s,rating_compare.call(e) %>
+              <%= f.label "score_#{e}",content_tag(:span, e.to_s),{:id => e,:class => 'rating'} %>
+              <%= radio_button_tag "rating[score]",e.to_s,rating_compare.call(e), :class => 'rating_button' %>
           <% end %>
-          <%= f.submit 'Rate' %>
+          <%= f.submit 'Rate',:class => 'rating_button' %>
       <% end %>
   <% end %>
+  <br />
 
 
 
@@ -63,7 +67,7 @@
           <%= f.hidden_field :beer_id,:value => @beer.id %>
           <div class="control-group">
             <%= f.label :body, {:class => 'control-label'} %>
-            <%= f.text_area :body, {:class => 'text_area'} %>
+            <%= f.text_area :body, {:class => 'text_area', :rows => 5,:placeholder => 'your comment here'} %>
           </div>
           <%= f.submit 'Post!',{:class => 'btn btn-primary'} %>
 

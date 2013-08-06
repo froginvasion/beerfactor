@@ -8,13 +8,13 @@
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
+      <%= f.text_area :description, {:rows => 3,:class => 'text_area'} %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :alcoholpercentage, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :alcoholpercentage, :class => 'text_field' %>
+      <%= f.text_field :alcoholpercentage, {:type => 'number'} %>
     </div>
   </div>
   <div class="control-group">
