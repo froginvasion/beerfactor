@@ -29,6 +29,8 @@ gem 'nokogiri'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'omniauth-facebook'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

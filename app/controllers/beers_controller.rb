@@ -1,11 +1,16 @@
 class BeersController < ApplicationController
+
+  before_filter :authorisation_check, :only => [:new,:create,:edit,:destroy,:update]
+
+
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    @beers = Beer.scoped.paginate(:per_page => 1, :page => params[:page])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beers }
+      format.js
     end
   end
 
@@ -82,4 +87,13 @@ class BeersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def authorisation_check
+    unless current_user
+      redirect_to root_url, :notice => 'You need to log in!'
+    end
+  end
+
 end

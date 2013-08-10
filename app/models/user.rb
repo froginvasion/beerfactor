@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  private
   def omniauth_check
     if self.oauth_token && self.oauth_expires_at && self.provider
       self.password= SecureRandom.base64 if self.password.nil?
