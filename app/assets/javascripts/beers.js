@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.pagination').on('click','a',function(){
+    $('#beers').on('click','.pagination a',function(){
         $.getScript($(this).attr('href'));
         return false;
     });
