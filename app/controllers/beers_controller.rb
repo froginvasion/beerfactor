@@ -92,7 +92,7 @@ class BeersController < ApplicationController
 
   def authorisation_check
     unless current_user
-      redirect_to root_url, :notice => 'You need to log in!'
+      redirect_to root_url, :alert => 'You need to log in!'
     end
   end
 

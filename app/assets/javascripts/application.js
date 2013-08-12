@@ -16,4 +16,5 @@
 //= require_tree .
 $(document).ready(function(){
     $('.navbar ul a[href="' + this.location.pathname + '"]').parent().addClass('active');
+    $('.alert').fadeIn(800);
 });
