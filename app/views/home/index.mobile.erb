@@ -3,3 +3,9 @@
   The place to be to rank your beers, keep your scores updated,
   and discuss your latest beer hints, tips and tricks with your friends and fellow beer enthousiasts!
 </p>
+<% content_for :right_link do %>
+    <%= link_to "Register", new_user_path, :class => 'ui-btn-right', :data => {:icon => 'gear'} %>
+<% end %>
+<% content_for :left_link do %>
+    <%= link_to "Log in!", 'login_path', :class => 'ui-btn-left', :data => {:icon => 'home'} %>
+<% end %>
