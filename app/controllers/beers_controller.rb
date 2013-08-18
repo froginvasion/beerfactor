@@ -31,6 +31,7 @@ class BeersController < ApplicationController
   def new
     @beer = Beer.new
     @kinds = Kind.all
+    @countries = Country.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beer }
@@ -41,6 +42,7 @@ class BeersController < ApplicationController
   def edit
     @beer = Beer.find(params[:id])
     @kinds = Kind.all
+    @countries = Country.all
   end
 
   # POST /beers

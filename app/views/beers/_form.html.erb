@@ -1,32 +1,74 @@
-<%= form_for @beer, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+<%= form_for @beer, :html => {:class => 'form-horizontal'} do |f| %>
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :description, {:rows => 3,:class => 'text_area'} %>
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, {:rows => 3, :class => 'text_area'} %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :alcoholpercentage, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :alcoholpercentage, {:type => 'number'} %>
+    <div class="control-group">
+      <%= f.label :brewery, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :brewery, {:class => 'text_field'} %>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :kind_id, :class => 'control-label'  %>
-    <div class="controls">
-      <%= f.select :kind_id, @kinds.map {|kind| [kind.name,kind.id]} %>
-    </div>
-  </div>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                beers_path, :class => 'btn' %>
-  </div>
+    <% if false %>
+        <div class="control-group">
+          <%= f.label :alcoholpercentage, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :alcoholpercentage, {:type => 'number'} %>
+          </div>
+        </div>
+
+
+        <div class="control-group">
+          <%= f.label :kind_id, :class => 'control-label' %>
+          <div class="controls">
+            <%= f.select :kind_id, @kinds.map { |kind| [kind.name, kind.id] } %>
+          </div>
+        </div>
+    <% end %>
+
+
+    <div class="control-group">
+      <%= f.label :country_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :country_id, @countries.map { |country| [country.name, country.id] } %>
+      </div>
+    </div>
+
+
+
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  beers_path, :class => 'btn' %>
+    </div>
 <% end %>
+
+
+
+<% if false %>
+    <div id="country_form">
+      <%= form_for Country.new, :html => {:class => 'form-horizontal'} do |country_form| %>
+          <div id="new_country_form" class="control-group">
+            <%= country_form.label :name, :class => 'control-label' %>
+            <div class="controls">
+              <%= country_form.text_field :name %>
+            </div>
+          </div>
+          <div class="controls">
+            <%= country_form.submit nil, :class => 'btn btn-primary' %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
+
+

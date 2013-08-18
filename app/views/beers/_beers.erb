@@ -5,8 +5,8 @@
       <tr>
         <th><%= model_class.human_attribute_name(:id) %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:alcoholpercentage) %></th>
-        <th><%= model_class.human_attribute_name(:kind) %></th>
+        <th><%= model_class.human_attribute_name(:brewery) %></th>
+
         <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
       </thead>
@@ -15,8 +15,7 @@
           <tr>
             <td><%= link_to beer.id, beer_path(beer) %></td>
             <td><%= link_to beer.name, beer_path(beer) %></td>
-            <td><%= beer.alcoholpercentage %></td>
-            <td><%= beer.kind.name %></td>
+            <td><%= link_to beer.brewery, beer_path(beer) %></td>
             <td>
               <%= link_to t('.edit', :default => t("helpers.links.edit")),
                           edit_beer_path(beer), :class => 'btn btn-mini' %>

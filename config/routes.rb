@@ -1,4 +1,6 @@
 Beerfactor::Application.routes.draw do
+  get "countries/index"
+
   get "ratings/index"
 
   get "comments/index"
@@ -13,6 +15,7 @@ Beerfactor::Application.routes.draw do
 
   resources :beers
 
+  resources :countries
   resources :users
   resources :ratings
 
