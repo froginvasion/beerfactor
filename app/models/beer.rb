@@ -5,24 +5,6 @@ class Beer < ActiveRecord::Base
 
 
   belongs_to :country
-
-=begin
-  has_many :comments
-  has_many :ratings
-=end
-=begin
-  has_many :raters, :through => :ratings, :source => :users
-=end
-
-=begin
-  def average_rating
-    @value = 0
-    self.ratings.each do |rating|
-      @value += rating.score
-    end
-    @total = self.ratings.size
-    @value.to_f / @total.to_f
-  end
-=end
+  has_many :beer_varieties
 
 end

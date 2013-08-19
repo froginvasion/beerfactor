@@ -18,8 +18,6 @@ class BeersController < ApplicationController
   # GET /beers/1.json
   def show
     @beer = Beer.find(params[:id])
-    @comment = Comment.new
-    @comment.beer=(@beer)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @beer }
@@ -30,7 +28,6 @@ class BeersController < ApplicationController
   # GET /beers/new.json
   def new
     @beer = Beer.new
-    @kinds = Kind.all
     @countries = Country.all
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +38,6 @@ class BeersController < ApplicationController
   # GET /beers/1/edit
   def edit
     @beer = Beer.find(params[:id])
-    @kinds = Kind.all
     @countries = Country.all
   end
 
@@ -66,7 +62,6 @@ class BeersController < ApplicationController
   # PUT /beers/1.json
   def update
     @beer = Beer.find(params[:id])
-    @kinds = Kind.all
     respond_to do |format|
       if @beer.update_attributes(params[:beer])
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }

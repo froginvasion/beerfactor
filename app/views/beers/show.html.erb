@@ -12,6 +12,13 @@
   <dd><%= @beer.brewery %></dd>
 </dl>
 
+<% @beer.beer_varieties.each do |variety| %>
+    <%= link_to variety.name, beer_beer_variety_path(@beer, variety), {:remote => true} %>
+<% end %>
+
+<br />
+<%= link_to 'create new variety', new_beer_beer_variety_path(@beer) %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               beers_path, :class => 'btn'  %>
@@ -24,47 +31,5 @@
               :class => 'btn btn-danger' %>
 </div>
 
-<% if false %>
-    <div>
-      <% if logged_in? %>
-          <h2>Rate this beer!</h2>
-          <% content_for :scripts do %>
-            <%= javascript_include_tag 'rating_ballot' %>
-          <% end %>
-          <%= form_for rating_ballot, :html => {:remote => true,:class => 'rating_ballot'} do |f| %>
-              <%= f.hidden_field :beer_id,:value => @beer.id %>
-              <% 1.upto(10) do |e| %>
-                  <%= f.label "score_#{e}",content_tag(:span, e.to_s),{:id => e,:class => 'rating'} %>
-                  <%= radio_button_tag "rating[score]",e.to_s,rating_compare.call(e), :class => 'rating_button' %>
-              <% end %>
-              <%= f.submit 'Rate',:class => 'rating_button' %>
-          <% end %>
-      <% end %>
-      <br />
-    <% unless @beer.comments.empty? %>
-          <h2>Comments</h2>
-          <% @beer.comments.order("created_at DESC").each do |comment| %>
-            <i><%= time_ago_in_words comment.updated_at %> ago by</i>
-            <strong><%= comment.user.email %></strong>
-              <br />
-              <em><%= comment.body %></em>
-              <hr>
-          <% end %>
-      <% end %>
-     <% unless logged_in? %>
-          <strong>Please register to post comments or rate <%= link_to 'here',new_user_path %> or log in.</strong>
-      <% else %>
-           <h2>Add a comment!</h2>
-          <em>You are posting as <%= current_user.email %></em>
-          <%= form_for @comment do |f| %>
-              <%= f.hidden_field :beer_id,:value => @beer.id %>
-              <div class="control-group">
-                <%= f.label :body, {:class => 'control-label'} %>
-                <%= f.text_area :body, {:class => 'text_area', :rows => 5,:placeholder => 'your comment here'} %>
-              </div>
-              <%= f.submit 'Post!',{:class => 'btn btn-primary'} %>
-          <% end %>
-      <% end %>
-    </div>
-<% end %>
-
+<div id="beer_variety">
+</div>

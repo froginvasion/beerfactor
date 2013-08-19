@@ -1,0 +1,21 @@
+<h1>Listing beer_varieties</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @beer_varieties.each do |beer_variety| %>
+  <tr>
+    <td><%= link_to 'Show', beer_variety %></td>
+    <td><%= link_to 'Edit', edit_beer_variety_path(beer_variety) %></td>
+    <td><%= link_to 'Destroy', beer_variety, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Beer variety', new_beer_variety_path %>

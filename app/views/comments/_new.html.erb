@@ -1,0 +1,20 @@
+<h3>Add a comment!</h3>
+<% if @beer_variety.errors.any? %>
+    <div class="error_messages">
+      <h3>Form has errors:</h3>
+      <ul>
+        <% for error in @beer_variety.errors.full_messages %>
+            <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<em>You are posting as <%= current_user.email %></em>
+<%= form_for Comment.new, :html => {:remote => true} do |f| %>
+    <%= f.hidden_field :beer_variety_id,:value => @beer_variety.id %>
+    <div class="control-group">
+      <%= f.label :body, {:class => 'control-label'} %>
+      <%= f.text_area :body, {:class => 'text_area', :rows => 5,:placeholder => 'your comment here'} %>
+    </div>
+    <%= f.submit 'Post!',{:class => 'btn btn-primary'} %>
+<% end %>

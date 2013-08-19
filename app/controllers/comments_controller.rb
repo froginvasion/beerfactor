@@ -6,12 +6,14 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment.beer , notice: 'Comment was successfully posted.' }
+        format.html { redirect_to beer_path(@comment.beer_variety.beer) , notice: 'Comment was successfully posted.' }
         format.json { render json: @comment, status: :created, location: @comment }
+        format.js
       else
-        @beer = Beer.find(params[:comment][:beer_id])
-        format.html { render  'beers/show' }
+        @beer_variety = BeerVariety.find(params[:comment][:beer_variety_id])
+        format.html { render 'create' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

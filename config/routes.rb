@@ -1,4 +1,6 @@
 Beerfactor::Application.routes.draw do
+
+
   get "countries/index"
 
   get "ratings/index"
@@ -13,7 +15,9 @@ Beerfactor::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
 
-  resources :beers
+  resources :beers do
+    resources :beer_varieties
+  end
 
   resources :countries
   resources :users
