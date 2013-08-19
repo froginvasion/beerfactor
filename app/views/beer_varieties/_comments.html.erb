@@ -1,0 +1,10 @@
+<% unless @beer_variety.comments.empty? %>
+    <h3>Comments</h3>
+    <% @beer_variety.comments.order("created_at DESC").each do |comment| %>
+        <i><%= time_ago_in_words comment.updated_at %> ago by</i>
+        <strong><%= comment.user.email %></strong>
+        <br />
+        <em><%= comment.body %></em>
+        <hr>
+    <% end %>
+<% end %>

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-
+    @beer_variety = @comment.beer_variety
     respond_to do |format|
       if @comment.save
         format.html { redirect_to beer_path(@comment.beer_variety.beer) , notice: 'Comment was successfully posted.' }

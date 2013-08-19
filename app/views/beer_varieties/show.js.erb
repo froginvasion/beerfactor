@@ -1,1 +1,3 @@
-$('#beer_variety').html("<%= escape_javascript(render :partial => 'varieties') %>")
+$('#beer_variety').html("<%= escape_javascript(render :partial => 'varieties') %>");
+var checkedId = $('form.rating_ballot > input:checked').attr('id');
+$('form.rating_ballot > label[for=' + checkedId + ']').prevAll().andSelf().addClass('bright');

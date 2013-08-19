@@ -1,23 +1,24 @@
 $(function(){
-    var checkedId = $('form.rating_ballot > input:checked').attr('id');
-    $('form.rating_ballot > label[for=' + checkedId + ']').prevAll().andSelf().addClass('bright');
 
-    $('form.rating_ballot').change(function() {
+
+
+    $('#beer_variety').on('change','form.rating_ballot', function() {
         $('form.rating_ballot').submit();
     });
 
     // Make stars glow on hover
-    $('form.rating_ballot > label').hover(
-        function() {    // mouseover
-            $(this).prevAll().andSelf().addClass('glow');
-        },function() {  // mouseout
-            $(this).siblings().andSelf().removeClass('glow');
-        });
+    $('#beer_variety').on({mouseover: function(){
+                $(this).prevAll().andSelf().addClass('glow');
+            },
+            mouseout: function(){
+                $(this).siblings().andSelf().removeClass('glow');
+            },
+            click: function(){
+                $(this).siblings().removeClass('bright');
+                $(this).prevAll().andSelf().addClass('bright');
+            }
 
-    // Makes stars stay glowing after click.
-    $('form.rating_ballot > label').click(function() {
-        $(this).siblings().removeClass('bright');
-        $(this).prevAll().andSelf().addClass('bright');
-    });
+        },'form.rating_ballot > label');
+
 
 });

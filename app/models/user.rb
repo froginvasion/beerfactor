@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
   before_validation :omniauth_check
 
-  has_many :rated_beers, :through => :ratings,:source => :beers
+  has_many :rated_beers, :through => :ratings,:source => :beer_varieties
   has_many :ratings
 
 
